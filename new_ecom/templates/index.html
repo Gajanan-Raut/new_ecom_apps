@@ -8,6 +8,19 @@
 </head>
 <body>
     <h1>Hello, World!</h1>
+    <div id="nameDisplay" style="text-align: center;">
+    <form action="">
+        <label for="name ">NAME: <input type="text" placeholder="enter your name ..."></label><br>
+        <label for="dob">DATE OF BIRTH: <input type="date" placeholder="enter your date of birth ..."></label><br>
+        <label for="address">ADDRESS: <input type="text" placeholder="enter your address ..."></label><br>
+        <label for="email">EMAIL: <input type="email" placeholder="enter your email ..."></label><br>
+        <label for="phone">PHONE NUMBER: <input type="tel" placeholder="enter your phone number ..."></label><br>
+
+    </form>
+  
+    <button class="btn btn-primary" onclick="abd()" style="text-align: center;">Click Me!</button>
+      </div>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
