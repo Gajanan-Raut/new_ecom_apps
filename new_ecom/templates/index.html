@@ -9,7 +9,7 @@
 <body>
     <h1>Hello, World!</h1>
     <div id="nameDisplay" style="text-align: center;">
-    <form method="POST" action="/indexs">
+    <!-- <form method="POST" action="/indexs">
 
         {% csrf_token %}
         <label for="name ">NAME: <input type="text" name="name" id="name" placeholder="enter your name ..."></label><br>
@@ -18,8 +18,35 @@
         <label for="email">EMAIL: <input type="email" name="email" placeholder="enter your email ..."></label><br>
         <label for="phone">PHONE NUMBER: <input type="tel" name="phone" placeholder="enter your phone number ..."></label><br>
         <button class="btn btn-primary" onclick="abd()" style="text-align: center;"><input type="submit">Click Me!</button>
-    </form>
-  
+    </form> -->
+    <form method="POST" action="{% if obj %}/edit/{{obj.id}}{% else %}/indexs{% endif %}">
+    {% csrf_token %}
+
+    <label for="name">NAME:
+        <input type="text" name="name" value="{{ obj.name|default:'' }}">
+    </label><br>
+
+    <label for="dob">DATE OF BIRTH:
+        <input type="date" name="dob" value="{{ obj.dob|default:'' }}">
+    </label><br>
+
+    <label for="address">ADDRESS:
+        <input type="text" name="address" value="{{ obj.address|default:'' }}">
+    </label><br>
+
+    <label for="email">EMAIL:
+        <input type="email" name="email" value="{{ obj.email|default:'' }}">
+    </label><br>
+
+    <label for="phone">PHONE NUMBER:
+        <input type="tel" name="phone" value="{{ obj.phone|default:'' }}">
+    </label><br>
+
+    <button type="submit">
+        {% if obj %}Update{% else %}Create{% endif %}
+    </button>
+</form>
+
     
       </div>
 
