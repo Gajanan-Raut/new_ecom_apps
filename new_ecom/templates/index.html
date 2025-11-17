@@ -9,16 +9,59 @@
 <body>
     <h1>Hello, World!</h1>
     <div id="nameDisplay" style="text-align: center;">
-    <form action="">
-        <label for="name ">NAME: <input type="text" placeholder="enter your name ..."></label><br>
-        <label for="dob">DATE OF BIRTH: <input type="date" placeholder="enter your date of birth ..."></label><br>
-        <label for="address">ADDRESS: <input type="text" placeholder="enter your address ..."></label><br>
-        <label for="email">EMAIL: <input type="email" placeholder="enter your email ..."></label><br>
-        <label for="phone">PHONE NUMBER: <input type="tel" placeholder="enter your phone number ..."></label><br>
+    <form method="POST" action="/indexs">
 
+        {% csrf_token %}
+        <label for="name ">NAME: <input type="text" name="name" id="name" placeholder="enter your name ..."></label><br>
+        <label for="dob">DATE OF BIRTH: <input type="date" name="dob" placeholder="enter your date of birth ..."></label><br>
+        <label for="address">ADDRESS: <input type="text" name="address" placeholder="enter your address ..."></label><br>
+        <label for="email">EMAIL: <input type="email" name="email" placeholder="enter your email ..."></label><br>
+        <label for="phone">PHONE NUMBER: <input type="tel" name="phone" placeholder="enter your phone number ..."></label><br>
+        <button class="btn btn-primary" onclick="abd()" style="text-align: center;"><input type="submit">Click Me!</button>
     </form>
   
-    <button class="btn btn-primary" onclick="abd()" style="text-align: center;">Click Me!</button>
+    
+      </div>
+
+      <div>
+        <table border="2px" style="width: 100%; text-align: center; margin-top: 50px;" >
+            <tr>
+                <th>NAME</th>
+                <th>DATE OF BIRTH</th>
+                <th>ADDRESS</th>
+                <th>EMAIL</th>
+                <th>PHONE NUMBER</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <td>Gajanan</td>
+                <td>2000-01-01</td>
+                <td>Pune</td>
+                <td>gajanan@example.com</td>
+                <td>1234567890</td>
+                <td><button class="btn btn-success">Edit</button></td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Gajanan</td>
+                <td>2000-01-01</td>
+                <td>Pune</td>
+                <td>gajanan@example.com</td>
+                <td>1234567890</td>
+                <td><button class="btn btn-success">Edit</button></td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Gajanan</td>
+                <td>2000-01-01</td>
+                <td>Pune</td>
+                <td>gajanan@example.com</td>
+                <td>1234567890</td>
+                <td><button class="btn btn-success">Edit</button></td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+        </table>
       </div>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
