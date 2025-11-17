@@ -45,6 +45,10 @@ def delete(request, id):
 #         content = {}
 #         content['data'] = student.objects.filter(id=id)
 #         return render(request, 'index.html', content)
+
+
+# create edit view
+
 def edit(request, id):
     if request.method == 'POST':
         name = request.POST['name']
@@ -62,5 +66,5 @@ def edit(request, id):
 
     else:
         obj = student.objects.get(id=id)
-        content = {'obj': obj, 'data': student.objects.all()}
+        content = {'obj': obj, 'data': student.objects.filter(is_delete='N')}
         return render(request, 'index.html', content)
