@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
     content={}
-    content['data'] = student.objects.all()
+    content['data'] = student.objects.filter(is_delete='N')
     return render(request, 'index.html', content)
 
 def forms(request):
@@ -26,5 +26,6 @@ def forms(request):
 
 
 def delete(request, id):
-    student.objects.get(id=id).delete()
+    student.objects.filter(id=id).update(is_delete='Y')
+
     return redirect('/index')
