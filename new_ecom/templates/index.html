@@ -34,33 +34,18 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
+            {% for i in data %}
             <tr>
-                <td>Gajanan</td>
-                <td>2000-01-01</td>
-                <td>Pune</td>
-                <td>gajanan@example.com</td>
-                <td>1234567890</td>
-                <td><button class="btn btn-success">Edit</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.dob }}</td>
+                <td>{{ i.address }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.phone }}</td>
+                <td><a href="/edit/{{i.id}}"><button class="btn btn-success">Edit</button></a></td>
+                <td><a href="/delete/{{i.id}}"><button class="btn btn-danger">Delete</button></a></td>
             </tr>
-            <tr>
-                <td>Gajanan</td>
-                <td>2000-01-01</td>
-                <td>Pune</td>
-                <td>gajanan@example.com</td>
-                <td>1234567890</td>
-                <td><button class="btn btn-success">Edit</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-                <td>Gajanan</td>
-                <td>2000-01-01</td>
-                <td>Pune</td>
-                <td>gajanan@example.com</td>
-                <td>1234567890</td>
-                <td><button class="btn btn-success">Edit</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
-            </tr>
+            {% endfor %}
+            
         </table>
       </div>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>

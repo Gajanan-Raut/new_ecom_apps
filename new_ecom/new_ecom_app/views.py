@@ -3,7 +3,9 @@ from new_ecom_app.models import student
 from django.http import HttpResponse
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    content={}
+    content['data'] = student.objects.all()
+    return render(request, 'index.html', content)
 
 def forms(request):
         if request.method == 'POST':
@@ -20,3 +22,9 @@ def forms(request):
             return redirect('/index')  # Redirect to a success page or another view
         else:
             return render(request, 'index.html')
+        
+
+
+def delete(request, id):
+    student.objects.get(id=id).delete()
+    return redirect('/index')
