@@ -5,9 +5,64 @@
     <meta name="viewport" content="width=, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <title>Document</title>
+    <style>
+/* MAIN BACKGROUND */
+.form-wrapper {
+    width: 70%;          /* smaller left-right size */
+    margin: 40px auto;
+    background: #21b8c7;
+    padding: 20px;       /* reduced height */
+    border-radius: 12px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* LEFT PART */
+.form-left {
+    width: 30%;          /* smaller left panel */
+}
+
+.form-left h2 {
+    font-size: 28px;     /* optional smaller heading */
+}
+
+.profile-img {
+    width: 120px;        /* smaller image */
+    height: 120px;
+}
+
+/* RIGHT PART */
+.form-right {
+    width: 65%;          /* adjusted right panel */
+}
+
+.form-right input,
+.form-right select,
+.form-right textarea {
+    width: 100%;
+    padding: 8px;        /* reduce input height */
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+/* BUTTON */
+.submit-btn {
+    background: white;
+    color: #21b8c7;
+    padding: 8px;        /* smaller button */
+    border-radius: 50px;
+    width: 40%;
+    font-weight: bold;
+    border: none;
+    margin: 0 auto;
+    cursor: pointer;
+}
+</style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    
     <div id="nameDisplay" style="text-align: center;">
     <!-- <form method="POST" action="/indexs">
 
@@ -19,7 +74,7 @@
         <label for="phone">PHONE NUMBER: <input type="tel" name="phone" placeholder="enter your phone number ..."></label><br>
         <button class="btn btn-primary" onclick="abd()" style="text-align: center;"><input type="submit">Click Me!</button>
     </form> -->
-    <form method="POST" action="{% if obj %}/edit/{{obj.id}}{% else %}/indexs{% endif %}">
+    <!-- <form method="POST" action="{% if obj %}/edit/{{obj.id}}{% else %}/indexs{% endif %}">
     {% csrf_token %}
 
     <label for="name">NAME:
@@ -45,9 +100,52 @@
     <button type="submit">
         {% if obj %}Update{% else %}Create{% endif %}
     </button>
-</form>
+</form> -->
 
-    
+<div class="form-wrapper">
+
+    <!-- LEFT SIDE (Static like image) -->
+    <div class="form-left" >
+        <h2>Talk to us about content<br>marketing.</h2>
+        <p>Contact us today about your content marketing strategy.</p>
+
+        <img src="https://via.placeholder.com/150" class="profile-img" alt="Profile">
+
+        <p style="margin-top: 20px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25">
+            Contact Zoe on LinkedIn
+        </p>
+    </div>
+
+    <!-- RIGHT SIDE (YOUR DJANGO FORM) -->
+    <div class="form-right">
+
+        <form method="POST" action="{% if obj %}/edit/{{obj.id}}{% else %}/indexs{% endif %}">
+            {% csrf_token %}
+
+            <label>Name*</label>
+            <input type="text" name="name" value="{{ obj.name|default:'' }}">
+
+            <label>Date of Birth*</label>
+            <input type="date" name="dob" value="{{ obj.dob|default:'' }}">
+
+            <label>Address*</label>
+            <input type="text" name="address" value="{{ obj.address|default:'' }}">
+
+            <label>Email*</label>
+            <input type="email" name="email" value="{{ obj.email|default:'' }}">
+
+            <label>Phone Number*</label>
+            <input type="tel" name="phone" value="{{ obj.phone|default:'' }}">
+
+            <button type="submit" class="submit-btn">
+                {% if obj %}Update{% else %}Send{% endif %}
+            </button>
+        </form>
+
+    </div>
+
+</div>
       </div>
 
       <div>

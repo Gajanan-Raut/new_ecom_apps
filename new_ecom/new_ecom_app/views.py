@@ -16,6 +16,7 @@ def forms(request):
             address = request.POST['address']
             email = request.POST['email']
             phone = request.POST['phone']
+            
             t1=student.objects.create(name=name,dob=dob,address=address,email=email,phone=phone)
             # print(t1)
             # return HttpResponse("Data submitted successfully")
