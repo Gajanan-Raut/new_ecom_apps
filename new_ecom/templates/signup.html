@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user registration form</title>
+</head>
+<body>
+    <form method="POST" action="/register/" nova>
+        {% csrf_token %}
+        <table>
+            <!-- {{form}} -->
+            {% for x in form %}
+            <tr>
+                <td>{{x.label_tag}}</td>
+                <td>{{x}}</td>
+                {% if x.errors %}
+                <td style="color:red">{{x.errors}}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2"><input type="submit" value="Register"></td>
+            </tr>
+        </table>
+    </form>
+    
+</body>
+</html>
