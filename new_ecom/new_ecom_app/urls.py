@@ -10,4 +10,6 @@ urlpatterns = [
     path('header', views.header),
     path('login/', views.user_login),
     path('logout', views.user_logout),
+    path('set',views.setcookie),
+    path('get',views.getcookie),
 ]

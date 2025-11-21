@@ -137,3 +137,14 @@ def user_login(request):
 
 def user_logout(request):
     return redirect('/login')
+
+def setcookie(request):
+    r=render(request,'setcookie.html')
+    r.set_cookie('name','new_ecom_cookie')
+    # r.set_cookie('name','new_ecom_cookie',max_age=60)
+    return r
+
+def getcookie(request):
+    # d=request.COOKIES['name']
+    d=request.COOKIES.get('name','Hello Guest')
+    return render(request,'getcookie.html',{'data':d})
