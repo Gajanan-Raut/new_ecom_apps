@@ -1,5 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br>
+<br>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>user registration form</title>
@@ -23,6 +29,12 @@
             </tr>
         </table>
     </form>
-    
-</body>
-</html>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <span style="color: green;"><li>{{ message }}</li></span><a href="login">login</a>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+{% endblock %}

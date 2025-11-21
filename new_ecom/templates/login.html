@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br>
+<br>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user login form</title>
+</head>
+<body>
+    <form method="POST" action="/login/">
+        {% csrf_token %}
+        <table>
+            {{form}}
+            
+            <tr>
+                <td colspan="2"><input type="submit" value="Login"></td>
+            </tr>
+        </table>
+    </form>
+ 
+
+{% endblock %}

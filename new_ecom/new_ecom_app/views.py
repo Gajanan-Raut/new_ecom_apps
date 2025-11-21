@@ -1,10 +1,12 @@
 from django.shortcuts import render ,redirect
 from new_ecom_app.models import student
 from django.http import HttpResponse, request
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from new_ecom_app.form import registerForm
+from django.contrib import messages
+from django.contrib.auth import authenticate
 # Create your views here.
 def index(request):
     content={}
@@ -101,8 +103,9 @@ def give_group_permission(user):
 def register(request):
     if request.method == 'POST':
         fm=registerForm(request.POST)
-        print(fm)
+        # print(fm)
         if fm.is_valid():
+            messages.success(request, 'Account created successfully!, please login.')
             fm.save()
             
         return redirect('/register/')
@@ -112,3 +115,25 @@ def register(request):
 
 def header(request):
     return render(request, 'header.html')
+
+
+def user_login(request):
+    if request.method == 'POST':
+        fm=AuthenticationForm(request=request, data=request.POST)
+        # print(fm)
+        # print(fm.is_valid())
+        if fm.is_valid():
+            uname=fm.cleaned_data['username']
+            upass=fm.cleaned_data['password']
+            # print(uname, upass)
+            u=authenticate(username=uname, password=upass)
+            print(u)
+            if u:
+                return redirect('/index')
+        return HttpResponse("in post section")
+    else:
+        fm=AuthenticationForm()
+        return render(request, 'login.html', {'form':fm})
+
+def user_logout(request):
+    return redirect('/login')
