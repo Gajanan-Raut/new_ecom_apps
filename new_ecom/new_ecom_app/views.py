@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from new_ecom_app.form import registerForm
 from django.contrib import messages
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 def index(request):
     content={}
@@ -127,15 +127,17 @@ def user_login(request):
             upass=fm.cleaned_data['password']
             # print(uname, upass)
             u=authenticate(username=uname, password=upass)
-            print(u)
+            # print(u)
             if u:
+                login(request, u)
                 return redirect('/index')
-        return HttpResponse("in post section")
+        # return HttpResponse("in post section")
     else:
         fm=AuthenticationForm()
         return render(request, 'login.html', {'form':fm})
 
 def user_logout(request):
+    logout(request)
     return redirect('/login')
 
 def setcookie(request):
@@ -148,3 +150,22 @@ def getcookie(request):
     # d=request.COOKIES['name']
     d=request.COOKIES.get('name','Hello Guest')
     return render(request,'getcookie.html',{'data':d})
+
+
+def setsession(request):
+    request.session['name']='new_ecom_session'
+    return render(request,'setsession.html')
+
+def getsession(request):
+    d=request.session['name']
+    return render(request,'getsession.html',{'data':d})
+
+def del_session(request):
+    if 'name' in request.session:
+        del request.session['name']
+    return HttpResponse("session deleted")
+
+
+def getloggeduserid(request):
+    user_id=request.user.id
+    return render(request,'getloggeduserid.html',{'data':user_id})

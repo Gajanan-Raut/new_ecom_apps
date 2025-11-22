@@ -12,4 +12,8 @@ urlpatterns = [
     path('logout', views.user_logout),
     path('set',views.setcookie),
     path('get',views.getcookie),
+    path('setsession',views.setsession),
+    path('getsession',views.getsession),
+    path('delsession',views.del_session),
+    path('getid',views.getloggeduserid),
 ]
