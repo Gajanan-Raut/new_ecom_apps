@@ -10,10 +10,19 @@ urlpatterns = [
     path('header', views.header),
     path('login/', views.user_login),
     path('logout', views.user_logout),
-    path('set',views.setcookie),
+#     path('set',views.setcookie),
+#     path('get',views.getcookie),
+#     path('setsession',views.setsession),
+#     path('getsession',views.getsession),
+#     path('delsession',views.del_session),
+#     path('getid',views.getloggeduserid),
+    path('set', views.setcookie),
     path('get',views.getcookie),
+    path('del',views.del_cookie),
+
+    # SET SESSION
     path('setsession',views.setsession),
     path('getsession',views.getsession),
-    path('delsession',views.del_session),
+    path('del_session',views.del_session),
     path('getid',views.getloggeduserid),
 ]

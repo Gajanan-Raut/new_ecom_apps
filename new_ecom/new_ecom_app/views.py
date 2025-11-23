@@ -7,10 +7,15 @@ from django.contrib.auth.models import Group
 from new_ecom_app.form import registerForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 # Create your views here.
 def index(request):
     content={}
-    content['data'] = student.objects.filter(is_delete='N')
+    user_id=request.user.id
+    Q1=Q(is_delete='N')
+    Q2=Q(uid=user_id)
+    # content['data'] = student.objects.filter(is_delete='N')
+    content['data'] = student.objects.filter(Q1 & Q2)
     return render(request, 'index.html', content)
 
 
@@ -22,8 +27,10 @@ def forms(request):
             address = request.POST['address']
             email = request.POST['email']
             phone = request.POST['phone']
+            user_id=request.user.id
+            print(user_id)
             
-            t1=student.objects.create(name=name,dob=dob,address=address,email=email,phone=phone)
+            t1=student.objects.create(name=name,dob=dob,address=address,email=email,phone=phone,uid=user_id)
             # print(t1)
             # return HttpResponse("Data submitted successfully")
             t1.save()
@@ -106,7 +113,9 @@ def register(request):
         # print(fm)
         if fm.is_valid():
             messages.success(request, 'Account created successfully!, please login.')
-            fm.save()
+            user=fm.save()
+            user.is_staff = True
+            user.save() 
             
         return redirect('/register/')
     else:
@@ -129,7 +138,7 @@ def user_login(request):
             u=authenticate(username=uname, password=upass)
             # print(u)
             if u:
-                login(request, u)
+                login(request,u)
                 return redirect('/index')
         # return HttpResponse("in post section")
     else:
@@ -140,32 +149,67 @@ def user_logout(request):
     logout(request)
     return redirect('/login')
 
+# def setcookie(request):
+#     r=render(request,'setcookie.html')
+#     r.set_cookie('name','new_ecom_cookie')
+#     # r.set_cookie('name','new_ecom_cookie',max_age=60)
+#     return r
+
+# def getcookie(request):
+#     # d=request.COOKIES['name']
+#     d=request.COOKIES.get('name','Hello Guest')
+#     return render(request,'getcookie.html',{'data':d})
+
+
+# def setsession(request):
+#     request.session['name']='new_ecom_session'
+#     return render(request,'setsession.html')
+
+# def getsession(request):
+#     d=request.session['name']
+#     return render(request,'getsession.html',{'data':d})
+
+# def del_session(request):
+#     if 'name' in request.session:
+#         del request.session['name']
+#     return HttpResponse("session deleted")
+
+
+# def getloggeduserid(request):
+#     user_id=request.user.id
+#     return render(request,'getloggeduserid.html',{'data':user_id})
+# COOKIE ALL FUNCTIONS
 def setcookie(request):
     r=render(request,'setcookie.html')
-    r.set_cookie('name','new_ecom_cookie')
-    # r.set_cookie('name','new_ecom_cookie',max_age=60)
+    r.set_cookie('name','Gajanan')
+    # r.set_cookie('name','Gajanan',max_age=60)   
     return r
 
 def getcookie(request):
-    # d=request.COOKIES['name']
-    d=request.COOKIES.get('name','Hello Guest')
+    # d = request.COOKIES['name']
+    d = request.COOKIES.get('name', 'Hello Guest')
     return render(request,'getcookie.html',{'data':d})
 
+def del_cookie(request):
+    response = HttpResponse("Cookie deleted")
+    response.delete_cookie('name')
+    return response
 
+
+# SETSESSIN FUNCTION
 def setsession(request):
-    request.session['name']='new_ecom_session'
-    return render(request,'setsession.html')
+    request.session['name'] = 'Gajanan Session'
+    return render(request, 'setsession.html')
 
 def getsession(request):
-    d=request.session['name']
-    return render(request,'getsession.html',{'data':d})
+    d = request.session.get('name', 'Guest')
+    return render(request, 'getsession.html', {'data': d})
 
 def del_session(request):
     if 'name' in request.session:
         del request.session['name']
-    return HttpResponse("session deleted")
-
+    return HttpResponse("Session deleted")
 
 def getloggeduserid(request):
-    user_id=request.user.id
-    return render(request,'getloggeduserid.html',{'data':user_id})
+    user_id = request.user.id
+    return render(request, 'getsession.html', {'data': user_id})

@@ -7,6 +7,7 @@ class student(models.Model):
     address = models.TextField()
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15)
+    uid=models.IntegerField()
     
     is_delete =models.CharField(max_length=5, default='N')
     def __str__(self):
