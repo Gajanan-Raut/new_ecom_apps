@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-yh=oy1uwx2wx=%sf*+2@&-(3+e3jh1muldiwy1t7@m3h=u%x!g
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SECRET_KEY = 'qyae_*1hlx2i(*9y47$yb0#snlwg&k)v9^%0#$+sn7ff6h!7jl'
+SECRET_KEY = '%dc&lg_f353#13=kk7mh-rj%bvx3^dsv(x%ys$90tgqs$t0)1='
 
 
 ALLOWED_HOSTS = ['new_ecom.onrender.com', 'localhost']
