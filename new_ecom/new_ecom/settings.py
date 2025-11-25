@@ -24,10 +24,8 @@ SECRET_KEY = 'django-insecure-yh=oy1uwx2wx=%sf*+2@&-(3+e3jh1muldiwy1t7@m3h=u%x!g
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SECRET_KEY = 'sx_&c+0w1)atn02jfd*rs7%u0o!ut0mx#+#6jss0cqkwnp)m='
 
-
-ALLOWED_HOSTS = ['new_ecom.onrender.com', 'localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -129,9 +127,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
